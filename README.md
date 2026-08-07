@@ -1,4 +1,4 @@
-# JML-Lab — Joiner · Mover · Leaver mit Microsoft Graph PowerShell
+# JML-Lab: Joiner · Mover · Leaver mit Microsoft Graph PowerShell
 
 Automatisierung des kompletten Identity-Lifecycles in Microsoft Entra ID:
 vom Anlegen eines Mitarbeiters (Joiner) über den Abteilungswechsel (Mover)

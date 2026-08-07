@@ -456,24 +456,6 @@ try {
 }
 ```
 
----
-
-## TIPPS FÜR IAM-INTERVIEWS
-
-**Frage:** "Was machst du beim Onboarding?"  
-**Antwort:** "New-MgUser für User-Erstellung, New-MgGroupMember für Gruppen, Set-MgUserLicense für Lizenzen. Alles mit Error Handling."
-
-**Frage:** "Wie löschst du einen User?"  
-**Antwort:** "Update-MgUser mit AccountEnabled=false (90 Tage warten), dann Remove-MgUser. Nicht reversibel, deshalb Sicherheitsabfrage."
-
-**Frage:** "Wo ist die Eindeutigkeit wichtig?"  
-**Antwort:** "UserPrincipalName und Id sind eindeutig. Immer damit filtern, nicht DisplayName (kann doppelt sein)."
-
-**Frage:** "Scopes?"  
-**Antwort:** "User.ReadWrite.All für User, Directory.ReadWrite.All für Änderungen, Group.ReadWrite.All für Gruppen, Organization.Read.All für Lizenzen."
-
----
-
 **Ziel erreicht:** Du kennst alle 8 Commands und kannst JML-Automation mit Microsoft Graph durchführen.
 
 Viel Erfolg beim Auswendiglernen und den ersten echten Projekten! 💪

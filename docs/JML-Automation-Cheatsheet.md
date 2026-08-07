@@ -1,7 +1,6 @@
 # JML-Lab — Microsoft Graph PowerShell Commands Cheatsheet
-## Referenz zum Auswendiglernen, begleitend zum Lab
 
-## Alle 8 Befehle zum Auswendiglernen
+## 8 Befehle - Referenz zum Auswendiglernen (begleitend zum Lab)
 
 **Stand:** August 2026  
 **Autor:** Alexander Frank  

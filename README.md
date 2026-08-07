@@ -10,7 +10,7 @@ im Ordner `images/` zeigen die tatsächlichen Ergebnisse.
 
 ## Projektstruktur
 
-
+```text
 JML-Lab/
 ├── README.md
 ├── .gitignore
@@ -27,7 +27,7 @@ JML-Lab/
 │   └── JML-Automation-Cheatsheet.md
 └── images/
     └── 01–08 Screenshots der ausgeführten Schritte
-
+```
 
 ## Voraussetzungen
 
@@ -49,9 +49,9 @@ JML-Lab/
 | 7 | `Update-MgUser` (AccountEnabled=$false) | deaktivieren | Leaver |
 | 8 | `Remove-MgUser` | löschen | Leaver |
 
+## Anwendung
 
-## Anwendung - powershell
-
+```powershell
 # 1. Verbinden
 ./scripts/01-Connect-MgGraph.ps1
 
@@ -66,30 +66,41 @@ JML-Lab/
 # 4. Leaver: deaktivieren, dann löschen
 ./scripts/07-Disable-MgUser.ps1
 ./scripts/08-Remove-MgUser.ps1
+```
 
-----
+---
 
 ## Was ich in diesem Lab gebaut habe
 
-<!-- Alex: 2–3 Sätze in deinen Worten. Was war das Ziel, was hast du erreicht? -->
-
-Über Microsoft Graph in PowerShell, auf meinen echten Tenant, habe ich den kompletten JML-Prozess einmal von Hand durchgespielt, sprich nach dem Einloggen habe ich einen Benutzer angelegt, ihm eine Gruppe zugewiesen, die Lizenz-Struktur aufgebaut,
-Attribute geändert, den Account deaktiviert und schließlich gelöscht.
-
+Über Microsoft Graph in PowerShell, auf meinen echten Tenant, habe ich den
+kompletten JML-Prozess einmal von Hand durchgespielt, sprich nach dem Einloggen
+habe ich einen Benutzer angelegt, ihm eine Gruppe zugewiesen, die Lizenz-Struktur
+aufgebaut, Attribute geändert, den Account deaktiviert und schließlich gelöscht.
 
 ## Stolpersteine (echte Fehler aus dem Aufbau)
 
-# Nummer 1:
+### Nummer 1
 
-Direkt zu Beginn habe ich mich im falsches Konto eingeloggt, sprich beim ersten `Connect-MgGraph` hatte ich mich mit meinem privaten Microsoft-Konto statt mit dem Firmen-Tenant angemeldet, danach lief gar nichts. Jedoch habe ich sehr schnell die Lösung umgesetzt: "Disconnect-MgGraph" und neu mit dem richtigen Admin-Konto verbinden. Seitdem prüfe ich nach dem Verbinden immer zuerst `Get-MgContext`.
+Direkt zu Beginn habe ich mich im falsches Konto eingeloggt, sprich beim ersten
+`Connect-MgGraph` hatte ich mich mit meinem privaten Microsoft-Konto statt mit dem
+Firmen-Tenant angemeldet, danach lief gar nichts. Jedoch habe ich sehr schnell die
+Lösung umgesetzt: `Disconnect-MgGraph` und neu mit dem richtigen Admin-Konto
+verbinden. Seitdem prüfe ich nach dem Verbinden immer zuerst `Get-MgContext`.
 
-# Nummer 2:
+### Nummer 2
 
-Device-Code-Timeout auf macOS: `-UseDeviceAuthentication` lief nach 120 Sekunden in einen Timeout. Der normale interaktive Browser-Login war die zuverlässigere Variante.
+Device-Code-Timeout auf macOS: `-UseDeviceAuthentication` lief nach 120 Sekunden
+in einen Timeout. Der normale interaktive Browser-Login war die zuverlässigere
+Variante.
 
-# Nummer 3: 
+### Nummer 3
 
-Falsche Update-Syntax:`Update-MgUser -UserId $id -AccountEnabled $false` warf „positional parameter cannot be found". Richtig ist `-BodyParameter @{ AccountEnabled = $false }`.
+Falsche Update-Syntax: `Update-MgUser -UserId $id -AccountEnabled $false` warf
+„positional parameter cannot be found". Richtig ist
+`-BodyParameter @{ AccountEnabled = $false }`.
 
-# Nummer 4:
-Lizenz ohne SKU: `Set-MgUserLicense` meldete „does not correspond to a valid company License", weil der Dev-Tenant keine gekauften Lizenzen hat. Die Zuweisungs-Struktur bleibt trotzdem identisch.
+### Nummer 4
+
+Lizenz ohne SKU: `Set-MgUserLicense` meldete „does not correspond to a valid
+company License", weil der Dev-Tenant keine gekauften Lizenzen hat. Die
+Zuweisungs-Struktur bleibt trotzdem identisch.
